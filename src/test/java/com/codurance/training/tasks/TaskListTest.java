@@ -48,7 +48,7 @@ public class TaskListTest {
     @Test(expected = TaskNotFoundException.class)
     public void should_fail_marking_as_done_when_task_does_not_exist() throws Exception {
         TaskList taskList = new TaskList();
-        taskList.markAsdone("1");
+        taskList.markAsDone("1");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class TaskListTest {
         TaskList taskList = new TaskList();
         taskList.addProject("secrets");
         taskList.addTask("secrets", "one task");
-        taskList.markAsdone("1");
+        taskList.markAsDone("1");
 
         assertEquals(projects, taskList.getProjects());
     }

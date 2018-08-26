@@ -69,7 +69,7 @@ public class TaskList {
                 .orElse(null);
     }
 
-    public void markAsdone(String taskId) throws TaskNotFoundException {
+    public void markAsDone(String taskId) throws TaskNotFoundException {
 
         Task task = findTaskById(Long.parseLong(taskId));
         if (task == null) {

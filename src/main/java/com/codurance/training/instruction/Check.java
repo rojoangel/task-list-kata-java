@@ -16,7 +16,7 @@ public class Check implements Instruction {
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
         try {
-            tasks.markAsdone(taskId);
+            tasks.markAsDone(taskId);
         } catch (TaskNotFoundException ex) {
             out.printf(ex.getMessage());
             out.println();
