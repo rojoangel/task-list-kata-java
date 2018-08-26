@@ -1,6 +1,7 @@
 package com.codurance.training.tasks;
 
 import com.codurance.training.exceptions.ProjectNotFoundException;
+import com.codurance.training.exceptions.TaskNotFoundException;
 import com.codurance.training.projects.Project;
 
 import java.util.*;
@@ -11,10 +12,14 @@ public class TaskList {
 
     private Map<String, List<Task>> tasks;
     private List<Project> projects;
+    private Map<Long, Task> tasksById;
 
     public TaskList() {
-        tasks = new LinkedHashMap<>();
         projects = new ArrayList<>();
+        tasksById = new HashMap<>();
+
+        // parallel change to be deleted
+        tasks = new LinkedHashMap<>();
     }
 
     public Map<String, List<Task>> getTasks() {
@@ -39,7 +44,9 @@ public class TaskList {
         if (project == null) {
             throw new ProjectNotFoundException(projectName);
         }
-        project.addTask(new Task(nextId, taskDescription, false));
+        Task task = new Task(nextId, taskDescription, false);
+        project.addTask(task);
+        tasksById.put(task.getId(), task);
 
         // parallel change to be removed
         List<Task> projectTasks = getTasks().get(projectName);
@@ -60,5 +67,30 @@ public class TaskList {
                 .filter(project -> projectName.equals(project.getName()))
                 .findAny()
                 .orElse(null);
+    }
+
+    public void markAsdone(String taskId) throws TaskNotFoundException {
+
+        Task task = findTaskById(Long.parseLong(taskId));
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
+        task.done();
+
+        // Parallel change to be removed
+        int id = Integer.parseInt(taskId);
+        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+            for (Task myTask : project.getValue()) {
+                if (myTask.getId() == id) {
+                    myTask.done();
+                    return;
+                }
+            }
+        }
+        throw new TaskNotFoundException(taskId);
+    }
+
+    private Task findTaskById(Long id) {
+        return tasksById.get(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.codurance.training.tasks;
 
 import com.codurance.training.exceptions.ProjectNotFoundException;
+import com.codurance.training.exceptions.TaskNotFoundException;
 import com.codurance.training.projects.Project;
 import org.junit.Test;
 
@@ -41,6 +42,26 @@ public class TaskListTest {
         TaskList taskList = new TaskList();
         taskList.addProject("secrets");
         taskList.addTask("secrets", "one task");
+        assertEquals(projects, taskList.getProjects());
+    }
+
+    @Test(expected = TaskNotFoundException.class)
+    public void should_fail_marking_as_done_when_task_does_not_exist() throws Exception {
+        TaskList taskList = new TaskList();
+        taskList.markAsdone("1");
+    }
+
+    @Test
+    public void should_mark_as_done_a_task_when_found() throws Exception {
+        Project project = new Project("secrets");
+        project.addTask(new Task(1, "one task", true));
+        List<Project> projects = Arrays.asList(project);
+
+        TaskList taskList = new TaskList();
+        taskList.addProject("secrets");
+        taskList.addTask("secrets", "one task");
+        taskList.markAsdone("1");
+
         assertEquals(projects, taskList.getProjects());
     }
 }

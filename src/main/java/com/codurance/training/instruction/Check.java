@@ -1,11 +1,9 @@
 package com.codurance.training.instruction;
 
-import com.codurance.training.tasks.Task;
+import com.codurance.training.exceptions.TaskNotFoundException;
 import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class Check implements Instruction {
@@ -17,20 +15,14 @@ public class Check implements Instruction {
 
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
-        boolean done = true;
-        int id = Integer.parseInt(taskId);
-        for (Map.Entry<String, List<Task>> project : tasks.getTasks().entrySet()) {
-            for (Task task : project.getValue()) {
-                if (task.getId() == id) {
-                    task.setDone(done);
-                    return;
-                }
-            }
+        try {
+            tasks.markAsdone(taskId);
+        } catch (TaskNotFoundException ex) {
+            out.printf("Could not find a task with an ID of %s.", taskId);
+            out.println();
         }
-        out.printf("Could not find a task with an ID of %d.", id);
-        out.println();
-
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

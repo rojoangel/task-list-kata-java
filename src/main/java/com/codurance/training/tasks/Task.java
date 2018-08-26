@@ -52,4 +52,8 @@ public final class Task {
                 ", done=" + done +
                 '}';
     }
+
+    public void done() {
+        this.done = true;
+    }
 }
