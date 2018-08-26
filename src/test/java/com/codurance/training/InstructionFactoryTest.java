@@ -3,6 +3,7 @@ package com.codurance.training;
 import com.codurance.training.command.Command;
 import com.codurance.training.command.DeadLine;
 import com.codurance.training.query.Query;
+import com.codurance.training.query.Show;
 import com.codurance.training.query.Today;
 import org.junit.Test;
 
@@ -20,8 +21,15 @@ public class InstructionFactoryTest {
     @Test
     public void should_create_a_today_query() {
         CommandLineInstruction instruction = new CommandLineInstruction("today");
-        Query command = InstructionFactory.queryFrom(instruction);
-        assertEquals(new Today(), command);
+        Query query = InstructionFactory.queryFrom(instruction);
+        assertEquals(new Today(), query);
+    }
+
+    @Test
+    public void shoud_create_a_show_query() {
+        CommandLineInstruction instruction = new CommandLineInstruction("show");
+        Query show = InstructionFactory.queryFrom(instruction);
+        assertEquals(new Show(), show);
     }
 
 }

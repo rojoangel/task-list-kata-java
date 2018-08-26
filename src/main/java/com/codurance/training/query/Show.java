@@ -6,11 +6,17 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-public class Today implements Query {
+public class Show implements Query {
 
     @Override
     public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
-        out.println();
+        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+            out.println(project.getKey());
+            for (Task task : project.getValue()) {
+                out.printf("    [%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
+            }
+            out.println();
+        }
     }
 
     @Override

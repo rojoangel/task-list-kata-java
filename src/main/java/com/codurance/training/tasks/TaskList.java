@@ -57,7 +57,8 @@ public final class TaskList implements Runnable {
         String command = commandRest[0];
         switch (instruction.getCommand()) {
             case "show":
-                show();
+                Query show = InstructionFactory.queryFrom(instruction);
+                show.execute(tasks, out);
                 break;
             case "add":
                 add(commandRest[1]);
@@ -77,21 +78,11 @@ public final class TaskList implements Runnable {
                 break;
             case "today":
                 Query today = InstructionFactory.queryFrom(instruction);
-                out.print(today.execute());
+                today.execute(tasks, out);
                 break;
             default:
                 error(command);
                 break;
-        }
-    }
-
-    private void show() {
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            out.println(project.getKey());
-            for (Task task : project.getValue()) {
-                out.printf("    [%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
-            }
-            out.println();
         }
     }
 
