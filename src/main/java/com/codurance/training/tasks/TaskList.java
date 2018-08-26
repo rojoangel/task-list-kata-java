@@ -2,6 +2,8 @@ package com.codurance.training.tasks;
 
 import com.codurance.training.command.Command;
 import com.codurance.training.command.CommandFactory;
+import com.codurance.training.query.Query;
+import com.codurance.training.query.QueryFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -73,7 +75,8 @@ public final class TaskList implements Runnable {
                 deadline.execute();
                 break;
             case "today":
-                today();
+                Query today = QueryFactory.from(commandLine);
+                out.print(today.execute());
                 break;
             default:
                 error(command);
@@ -135,14 +138,6 @@ public final class TaskList implements Runnable {
             }
         }
         out.printf("Could not find a task with an ID of %d.", id);
-        out.println();
-    }
-
-    private void deadline() {
-
-    }
-
-    private void today() {
         out.println();
     }
 

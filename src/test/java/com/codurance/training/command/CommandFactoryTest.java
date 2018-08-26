@@ -2,7 +2,7 @@ package com.codurance.training.command;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CommandFactoryTest {
 
