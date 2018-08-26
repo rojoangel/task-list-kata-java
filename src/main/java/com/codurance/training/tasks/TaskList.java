@@ -52,7 +52,6 @@ public final class TaskList implements Runnable {
     private void execute(String commandLine) {
         String[] commandRest = commandLine.split(" ", 2);
         String command = commandRest[0];
-        Command myCommand = CommandFactory.from(commandLine);
         switch (command) {
             case "show":
                 show();
@@ -70,7 +69,8 @@ public final class TaskList implements Runnable {
                 help();
                 break;
             case "deadline":
-                deadline();
+                Command deadline = CommandFactory.from(commandLine);
+                deadline.execute();
                 break;
             case "today":
                 today();
