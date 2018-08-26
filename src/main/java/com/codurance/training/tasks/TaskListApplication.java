@@ -16,7 +16,7 @@ import static com.codurance.training.InstructionFactory.from;
 public final class TaskListApplication implements Runnable {
     private static final String QUIT = "quit";
 
-    private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
+    private final TaskList taskList = new TaskList();
     private final BufferedReader in;
     private final PrintWriter out;
 
@@ -53,6 +53,6 @@ public final class TaskListApplication implements Runnable {
     private void execute(String input) {
         CommandLine commandLine = new CommandLine(input);
         Instruction instruction = from(commandLine);
-        instruction.execute(tasks, out);
+        instruction.execute(taskList.getTasks(), out);
     }
 }
