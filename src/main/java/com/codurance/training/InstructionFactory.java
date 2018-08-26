@@ -1,13 +1,12 @@
 package com.codurance.training;
 
-import com.codurance.training.command.Check;
-import com.codurance.training.command.Command;
-import com.codurance.training.command.DeadLine;
-import com.codurance.training.command.Uncheck;
+import com.codurance.training.command.*;
 import com.codurance.training.query.Help;
 import com.codurance.training.query.Query;
 import com.codurance.training.query.Show;
 import com.codurance.training.query.Today;
+
+import java.util.Arrays;
 
 public class InstructionFactory {
 
@@ -24,6 +23,19 @@ public class InstructionFactory {
             case "uncheck":
                 return new Uncheck(
                         instruction.getArgument(0));
+            case "add":
+                switch (instruction.getArgument(0)) {
+                    case "project":
+                        return new AddProject(
+                                instruction.getArgument(1));
+                    case "task":
+                        return new AddTask(
+                                instruction.getArgument(1),
+                                String.join(" ",
+                                        Arrays.copyOfRange(instruction.getArguments(), 2, instruction.getArguments().length)));
+                        default:
+                            return null;
+                }
             default:
                 return null;
         }

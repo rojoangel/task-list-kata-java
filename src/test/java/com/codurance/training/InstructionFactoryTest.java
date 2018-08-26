@@ -1,9 +1,6 @@
 package com.codurance.training;
 
-import com.codurance.training.command.Check;
-import com.codurance.training.command.Command;
-import com.codurance.training.command.DeadLine;
-import com.codurance.training.command.Uncheck;
+import com.codurance.training.command.*;
 import com.codurance.training.query.Help;
 import com.codurance.training.query.Query;
 import com.codurance.training.query.Show;
@@ -54,5 +51,19 @@ public class InstructionFactoryTest {
         CommandLineInstruction instruction = new CommandLineInstruction("help");
         Query help = InstructionFactory.queryFrom(instruction);
         assertEquals(new Help(), help);
+    }
+
+    @Test
+    public void should_create_an_add_project_command() {
+        CommandLineInstruction instruction = new CommandLineInstruction("add project training");
+        Command add = InstructionFactory.commandFrom(instruction);
+        assertEquals(new AddProject("training"), add);
+    }
+
+    @Test
+    public void should_create_an_add_task_command() {
+        CommandLineInstruction instruction = new CommandLineInstruction("add task training Four Elements of Simple Design");
+        Command add = InstructionFactory.commandFrom(instruction);
+        assertEquals(new AddTask("training", "Four Elements of Simple Design"), add);
     }
 }

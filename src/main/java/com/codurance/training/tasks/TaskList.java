@@ -1,15 +1,14 @@
 package com.codurance.training.tasks;
 
 import com.codurance.training.CommandLineInstruction;
-import com.codurance.training.command.Command;
 import com.codurance.training.InstructionFactory;
+import com.codurance.training.command.Command;
 import com.codurance.training.query.Query;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,7 @@ public final class TaskList implements Runnable {
     private final BufferedReader in;
     private final PrintWriter out;
 
-    private long lastId = 0;
+    public static long LAST_ID = 0;
 
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -61,7 +60,8 @@ public final class TaskList implements Runnable {
                 show.execute(tasks, out);
                 break;
             case "add":
-                add(commandRest[1]);
+                Command add = InstructionFactory.commandFrom(instruction);
+                add.execute(tasks, out);
                 break;
             case "check":
                 Command check = InstructionFactory.commandFrom(instruction);
@@ -89,37 +89,8 @@ public final class TaskList implements Runnable {
         }
     }
 
-    private void add(String commandLine) {
-        String[] subcommandRest = commandLine.split(" ", 2);
-        String subcommand = subcommandRest[0];
-        if (subcommand.equals("project")) {
-            addProject(subcommandRest[1]);
-        } else if (subcommand.equals("task")) {
-            String[] projectTask = subcommandRest[1].split(" ", 2);
-            addTask(projectTask[0], projectTask[1]);
-        }
-    }
-
-    private void addProject(String name) {
-        tasks.put(name, new ArrayList<Task>());
-    }
-
-    private void addTask(String project, String description) {
-        List<Task> projectTasks = tasks.get(project);
-        if (projectTasks == null) {
-            out.printf("Could not find a project with the name \"%s\".", project);
-            out.println();
-            return;
-        }
-        projectTasks.add(new Task(nextId(), description, false));
-    }
-
     private void error(String command) {
         out.printf("I don't know what the command \"%s\" is.", command);
         out.println();
-    }
-
-    private long nextId() {
-        return ++lastId;
     }
 }
