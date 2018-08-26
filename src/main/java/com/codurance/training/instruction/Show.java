@@ -1,6 +1,5 @@
 package com.codurance.training.instruction;
 
-import com.codurance.training.instruction.Instruction;
 import com.codurance.training.tasks.Task;
 
 import java.io.PrintWriter;
