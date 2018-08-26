@@ -138,6 +138,24 @@ public final class ApplicationTest {
         execute("quit");
     }
 
+    @Test(timeout = 1000) public void
+    shows_help() throws IOException {
+
+        execute("help");
+
+        readLines(
+                "Commands:",
+                "  show",
+                "  add project <project name>",
+                "  add task <project name> <task description>",
+                "  check <task ID>",
+                "  uncheck <task ID>",
+                ""
+        );
+
+        execute("quit");
+    }
+
     private void execute(String command) throws IOException {
         read(PROMPT);
         write(command);
