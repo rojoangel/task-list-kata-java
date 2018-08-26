@@ -50,40 +50,8 @@ public final class TaskList implements Runnable {
     }
 
     private void execute(String commandLine) {
-        CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
-        switch (instruction.getCommand()) {
-            case "show":
-                Instruction show = InstructionFactory.from(instruction);
-                show.execute(tasks, out);
-                break;
-            case "add":
-                Instruction add = InstructionFactory.from(instruction);
-                add.execute(tasks, out);
-                break;
-            case "check":
-                Instruction check = InstructionFactory.from(instruction);
-                check.execute(tasks, out);
-                break;
-            case "uncheck":
-                Instruction uncheck = InstructionFactory.from(instruction);
-                uncheck.execute(tasks, out);
-                break;
-            case "help":
-                Instruction help = InstructionFactory.from(instruction);
-                help.execute(tasks, out);
-                break;
-            case "deadline":
-                Instruction deadline = InstructionFactory.from(instruction);
-                deadline.execute(tasks, out);
-                break;
-            case "today":
-                Instruction today = InstructionFactory.from(instruction);
-                today.execute(tasks, out);
-                break;
-            default:
-                Instruction notFound = InstructionFactory.from(instruction);
-                notFound.execute(tasks, out);
-                break;
-        }
+        CommandLineInstruction commandLineInstruction = new CommandLineInstruction(commandLine);
+        Instruction instruction = InstructionFactory.from(commandLineInstruction);
+        instruction.execute(tasks, out);
     }
 }
