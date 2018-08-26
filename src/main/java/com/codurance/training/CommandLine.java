@@ -2,11 +2,11 @@ package com.codurance.training;
 
 import java.util.Arrays;
 
-public class CommandLineInstruction {
+public class CommandLine {
     private String command;
     private String[] arguments = new String[]{};
 
-    public CommandLineInstruction(String commandLine) {
+    public CommandLine(String commandLine) {
         String[] commandLineParts = commandLine.split(" ", 2);
         command = commandLineParts[0];
         if (commandLineParts.length > 1) {

@@ -1,6 +1,6 @@
 package com.codurance.training.tasks;
 
-import com.codurance.training.CommandLineInstruction;
+import com.codurance.training.CommandLine;
 import com.codurance.training.instruction.Instruction;
 
 import java.io.BufferedReader;
@@ -50,9 +50,9 @@ public final class TaskList implements Runnable {
         }
     }
 
-    private void execute(String commandLine) {
-        CommandLineInstruction commandLineInstruction = new CommandLineInstruction(commandLine);
-        Instruction instruction = from(commandLineInstruction);
+    private void execute(String input) {
+        CommandLine commandLine = new CommandLine(input);
+        Instruction instruction = from(commandLine);
         instruction.execute(tasks, out);
     }
 }

@@ -7,7 +7,7 @@ import com.codurance.training.instruction.Today;
 
 public class InstructionFactory {
 
-    public static Instruction from(CommandLineInstruction instruction) {
+    public static Instruction from(CommandLine instruction) {
 
         switch (instruction.getCommand()) {
             case "deadline":
