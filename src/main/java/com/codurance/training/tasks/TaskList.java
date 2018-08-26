@@ -68,7 +68,8 @@ public final class TaskList implements Runnable {
                 check.execute(tasks, out);
                 break;
             case "uncheck":
-                uncheck(commandRest[1]);
+                Command uncheck = InstructionFactory.commandFrom(instruction);
+                uncheck.execute(tasks, out);
                 break;
             case "help":
                 help();
@@ -110,24 +111,6 @@ public final class TaskList implements Runnable {
             return;
         }
         projectTasks.add(new Task(nextId(), description, false));
-    }
-    
-    private void uncheck(String idString) {
-        setDone(idString, false);
-    }
-
-    private void setDone(String idString, boolean done) {
-        int id = Integer.parseInt(idString);
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            for (Task task : project.getValue()) {
-                if (task.getId() == id) {
-                    task.setDone(done);
-                    return;
-                }
-            }
-        }
-        out.printf("Could not find a task with an ID of %d.", id);
-        out.println();
     }
 
     private void help() {

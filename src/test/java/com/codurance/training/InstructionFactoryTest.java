@@ -3,6 +3,7 @@ package com.codurance.training;
 import com.codurance.training.command.Check;
 import com.codurance.training.command.Command;
 import com.codurance.training.command.DeadLine;
+import com.codurance.training.command.Uncheck;
 import com.codurance.training.query.Query;
 import com.codurance.training.query.Show;
 import com.codurance.training.query.Today;
@@ -38,5 +39,12 @@ public class InstructionFactoryTest {
         CommandLineInstruction instruction = new CommandLineInstruction("check 1");
         Command check = InstructionFactory.commandFrom(instruction);
         assertEquals(new Check("1"), check);
+    }
+
+    @Test
+    public void should_create_an_uncheck_command() {
+        CommandLineInstruction instruction = new CommandLineInstruction("uncheck 1");
+        Command uncheck = InstructionFactory.commandFrom(instruction);
+        assertEquals(new Uncheck("1"), uncheck);
     }
 }
