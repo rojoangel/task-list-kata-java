@@ -1,19 +1,19 @@
 package com.codurance.training.instruction;
 
+import com.codurance.training.projects.Project;
 import com.codurance.training.tasks.Task;
 import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
 
 public class Show implements Instruction {
 
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
-        for (Map.Entry<String, List<Task>> project : tasks.getTasks().entrySet()) {
-            out.println(project.getKey());
-            for (Task task : project.getValue()) {
+
+        for (Project project : tasks.getProjects()) {
+            out.println(project.getName());
+            for (Task task : project.getTasks()) {
                 out.printf("    [%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
             }
             out.println();
