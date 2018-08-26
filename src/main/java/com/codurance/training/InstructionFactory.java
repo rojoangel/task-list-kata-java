@@ -4,6 +4,7 @@ import com.codurance.training.command.Check;
 import com.codurance.training.command.Command;
 import com.codurance.training.command.DeadLine;
 import com.codurance.training.command.Uncheck;
+import com.codurance.training.query.Help;
 import com.codurance.training.query.Query;
 import com.codurance.training.query.Show;
 import com.codurance.training.query.Today;
@@ -35,9 +36,10 @@ public class InstructionFactory {
                 return new Today();
             case "show":
                 return new Show();
+            case "help":
+                return new Help();
             default:
                 return null;
         }
     }
-
 }

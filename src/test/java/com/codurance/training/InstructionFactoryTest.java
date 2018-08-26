@@ -4,6 +4,7 @@ import com.codurance.training.command.Check;
 import com.codurance.training.command.Command;
 import com.codurance.training.command.DeadLine;
 import com.codurance.training.command.Uncheck;
+import com.codurance.training.query.Help;
 import com.codurance.training.query.Query;
 import com.codurance.training.query.Show;
 import com.codurance.training.query.Today;
@@ -46,5 +47,12 @@ public class InstructionFactoryTest {
         CommandLineInstruction instruction = new CommandLineInstruction("uncheck 1");
         Command uncheck = InstructionFactory.commandFrom(instruction);
         assertEquals(new Uncheck("1"), uncheck);
+    }
+
+    @Test
+    public void should_create_a_help_query() {
+        CommandLineInstruction instruction = new CommandLineInstruction("help");
+        Query help = InstructionFactory.queryFrom(instruction);
+        assertEquals(new Help(), help);
     }
 }

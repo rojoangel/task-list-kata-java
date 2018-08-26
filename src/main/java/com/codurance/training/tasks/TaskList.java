@@ -72,7 +72,8 @@ public final class TaskList implements Runnable {
                 uncheck.execute(tasks, out);
                 break;
             case "help":
-                help();
+                Query help = InstructionFactory.queryFrom(instruction);
+                help.execute(tasks, out);
                 break;
             case "deadline":
                 Command deadline = InstructionFactory.commandFrom(instruction);
@@ -111,16 +112,6 @@ public final class TaskList implements Runnable {
             return;
         }
         projectTasks.add(new Task(nextId(), description, false));
-    }
-
-    private void help() {
-        out.println("Commands:");
-        out.println("  show");
-        out.println("  add project <project name>");
-        out.println("  add task <project name> <task description>");
-        out.println("  check <task ID>");
-        out.println("  uncheck <task ID>");
-        out.println();
     }
 
     private void error(String command) {
