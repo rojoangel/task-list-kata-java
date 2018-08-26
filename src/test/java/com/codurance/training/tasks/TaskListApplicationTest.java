@@ -151,6 +151,18 @@ public final class TaskListApplicationTest {
     }
 
     @Test(timeout = 1000) public void
+    shows_error_when_task_not_found() throws IOException {
+
+        execute("check 2");
+
+        readLines(
+                "Could not find a task with an ID of 2."
+        );
+
+        execute("quit");
+    }
+
+    @Test(timeout = 1000) public void
     shows_help() throws IOException {
 
         execute("help");
