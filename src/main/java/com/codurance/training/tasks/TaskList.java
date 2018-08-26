@@ -1,9 +1,8 @@
 package com.codurance.training.tasks;
 
 import com.codurance.training.command.Command;
-import com.codurance.training.command.CommandFactory;
+import com.codurance.training.InstructionFactory;
 import com.codurance.training.query.Query;
-import com.codurance.training.query.QueryFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -71,11 +70,11 @@ public final class TaskList implements Runnable {
                 help();
                 break;
             case "deadline":
-                Command deadline = CommandFactory.commandFrom(commandLine);
+                Command deadline = InstructionFactory.commandFrom(commandLine);
                 deadline.execute();
                 break;
             case "today":
-                Query today = QueryFactory.queryFrom(commandLine);
+                Query today = InstructionFactory.queryFrom(commandLine);
                 out.print(today.execute());
                 break;
             default:
