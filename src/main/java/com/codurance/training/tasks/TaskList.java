@@ -33,7 +33,7 @@ public class TaskList {
         if (project == null) {
             throw new ProjectNotFoundException(projectName);
         }
-        Task task = new Task(nextId, taskDescription, false);
+        Task task = new Task(nextId, taskDescription);
         project.addTask(task);
         tasksById.put(task.getId(), task);
     }

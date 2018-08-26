@@ -36,7 +36,7 @@ public class TaskListTest {
     @Test
     public void should_add_a_task_when_project_exists() throws Exception {
         Project project = new Project("secrets");
-        project.addTask(new Task(1, "one task", false));
+        project.addTask(new Task(1, "one task"));
         List<Project> projects = Arrays.asList(project);
 
         TaskList taskList = new TaskList();
@@ -54,7 +54,9 @@ public class TaskListTest {
     @Test
     public void should_mark_as_done_a_task_when_found() throws Exception {
         Project project = new Project("secrets");
-        project.addTask(new Task(1, "one task", true));
+        Task task = new Task(1, "one task");
+        task.done();
+        project.addTask(task);
         List<Project> projects = Arrays.asList(project);
 
         TaskList taskList = new TaskList();
@@ -74,7 +76,7 @@ public class TaskListTest {
     @Test
     public void should_mark_as_pending_a_task_when_found() throws Exception {
         Project project = new Project("secrets");
-        project.addTask(new Task(1, "one task", false));
+        project.addTask(new Task(1, "one task"));
         List<Project> projects = Arrays.asList(project);
 
         TaskList taskList = new TaskList();
