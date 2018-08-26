@@ -12,11 +12,13 @@ public class InstructionFactory {
         String[] commandRest = commandLine.split(" ");
         String command = commandRest[0];
 
-        switch (command) {
+        CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
+
+        switch (instruction.getCommand()) {
             case "deadline":
                 String taskId = commandRest[1];
                 String deadLine = commandRest[2];
-                return new DeadLine(taskId, deadLine);
+                return new DeadLine(instruction.getArguments());
             default:
                 return null;
         }
@@ -26,9 +28,11 @@ public class InstructionFactory {
         String[] commandRest = commandLine.split(" ");
         String command = commandRest[0];
 
-        switch (command) {
+        CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
+
+        switch (instruction.getCommand()) {
             case "today":
-                return new Today();
+                return new Today(instruction.getArguments());
             default:
                 return null;
         }

@@ -7,10 +7,10 @@ public class DeadLine implements Command {
     private final String taskId;
     private final String deadLine;
 
-    public DeadLine(String taskId, String deadLine) {
+    public DeadLine(String... arguments) {
 
-        this.taskId = taskId;
-        this.deadLine = deadLine;
+        this.taskId = arguments[0];
+        this.deadLine = arguments[1];
     }
 
     @Override

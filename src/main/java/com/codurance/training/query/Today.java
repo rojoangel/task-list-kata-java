@@ -2,6 +2,9 @@ package com.codurance.training.query;
 
 public class Today implements Query {
 
+    public Today(String... arguments) {
+    }
+
     @Override
     public String execute() {
         return System.lineSeparator();
