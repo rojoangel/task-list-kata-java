@@ -51,8 +51,6 @@ public final class TaskList implements Runnable {
 
     private void execute(String commandLine) {
         CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
-        String[] commandRest = commandLine.split(" ", 2);
-        String command = commandRest[0];
         switch (instruction.getCommand()) {
             case "show":
                 Instruction show = InstructionFactory.from(instruction);
@@ -83,7 +81,7 @@ public final class TaskList implements Runnable {
                 today.execute(tasks, out);
                 break;
             default:
-                error(command);
+                error(instruction.getCommand());
                 break;
         }
     }
