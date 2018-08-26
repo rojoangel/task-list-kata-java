@@ -12,13 +12,15 @@ public class InstructionFactoryTest {
 
     @Test
     public void should_create_a_deadline_command() {
-        Command command = InstructionFactory.commandFrom("deadline 1 20180101");
+        CommandLineInstruction instruction = new CommandLineInstruction("deadline 1 20180101");
+        Command command = InstructionFactory.commandFrom(instruction);
         assertEquals(new DeadLine("1", "20180101"), command);
     }
 
     @Test
     public void should_create_a_today_query() {
-        Query command = InstructionFactory.queryFrom("today");
+        CommandLineInstruction instruction = new CommandLineInstruction("today");
+        Query command = InstructionFactory.queryFrom(instruction);
         assertEquals(new Today(), command);
     }
 

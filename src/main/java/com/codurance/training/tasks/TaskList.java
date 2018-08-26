@@ -1,5 +1,6 @@
 package com.codurance.training.tasks;
 
+import com.codurance.training.CommandLineInstruction;
 import com.codurance.training.command.Command;
 import com.codurance.training.InstructionFactory;
 import com.codurance.training.query.Query;
@@ -51,6 +52,7 @@ public final class TaskList implements Runnable {
     }
 
     private void execute(String commandLine) {
+        CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
         String[] commandRest = commandLine.split(" ", 2);
         String command = commandRest[0];
         switch (command) {
@@ -70,11 +72,11 @@ public final class TaskList implements Runnable {
                 help();
                 break;
             case "deadline":
-                Command deadline = InstructionFactory.commandFrom(commandLine);
+                Command deadline = InstructionFactory.commandFrom(instruction);
                 deadline.execute();
                 break;
             case "today":
-                Query today = InstructionFactory.queryFrom(commandLine);
+                Query today = InstructionFactory.queryFrom(instruction);
                 out.print(today.execute());
                 break;
             default:

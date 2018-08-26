@@ -7,8 +7,7 @@ import com.codurance.training.query.Today;
 
 public class InstructionFactory {
 
-    public static Command commandFrom(String commandLine) {
-        CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
+    public static Command commandFrom(CommandLineInstruction instruction) {
 
         switch (instruction.getCommand()) {
             case "deadline":
@@ -20,8 +19,7 @@ public class InstructionFactory {
         }
     }
 
-    public static Query queryFrom(String commandLine) {
-        CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
+    public static Query queryFrom(CommandLineInstruction instruction) {
 
         switch (instruction.getCommand()) {
             case "today":
