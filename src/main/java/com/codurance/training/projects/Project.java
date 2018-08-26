@@ -16,6 +16,18 @@ public class Project {
         this.tasks = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

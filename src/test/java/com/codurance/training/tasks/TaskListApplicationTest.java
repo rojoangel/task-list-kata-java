@@ -139,6 +139,18 @@ public final class TaskListApplicationTest {
     }
 
     @Test(timeout = 1000) public void
+    shows_error_when_project_not_found() throws IOException {
+
+        execute("add task secrets Eat more donuts.");
+
+        readLines(
+                "Could not find a project with the name \"secrets\"."
+        );
+
+        execute("quit");
+    }
+
+    @Test(timeout = 1000) public void
     shows_help() throws IOException {
 
         execute("help");
