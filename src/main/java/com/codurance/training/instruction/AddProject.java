@@ -16,7 +16,7 @@ public class AddProject implements Instruction {
 
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
-        tasks.getTasks().put(projectId, new ArrayList<Task>());
+        tasks.addProject(projectId);
     }
 
     @Override
