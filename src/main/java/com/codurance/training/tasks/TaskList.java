@@ -1,27 +1,29 @@
 package com.codurance.training.tasks;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.codurance.training.projects.Project;
+
+import java.util.*;
 
 public class TaskList {
 
     private Map<String, List<Task>> tasks;
+    private List<Project> projects;
 
     public TaskList() {
         tasks = new LinkedHashMap<>();
+        projects = new ArrayList<>();
     }
 
     public Map<String, List<Task>> getTasks() {
         return tasks;
     }
 
-    public void addProject(String projectName) {
-        tasks.put(projectName, new ArrayList<>());
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public String[] getProjects() {
-        return tasks.keySet().toArray(new String[]{});
+    public void addProject(String name) {
+        tasks.put(name, new ArrayList<>());
+        projects.add(new Project(name));
     }
 }
