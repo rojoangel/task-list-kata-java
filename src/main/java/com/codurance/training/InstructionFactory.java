@@ -12,7 +12,9 @@ public class InstructionFactory {
 
         switch (instruction.getCommand()) {
             case "deadline":
-                return new DeadLine(instruction.getArguments());
+                String taskId = instruction.getArgument(0);
+                String deadLine = instruction.getArgument(1);
+                return new DeadLine(taskId, deadLine);
             default:
                 return null;
         }
@@ -23,7 +25,7 @@ public class InstructionFactory {
 
         switch (instruction.getCommand()) {
             case "today":
-                return new Today(instruction.getArguments());
+                return new Today();
             default:
                 return null;
         }
