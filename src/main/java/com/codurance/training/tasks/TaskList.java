@@ -1,5 +1,8 @@
 package com.codurance.training.tasks;
 
+import com.codurance.training.command.Command;
+import com.codurance.training.command.CommandFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -49,6 +52,7 @@ public final class TaskList implements Runnable {
     private void execute(String commandLine) {
         String[] commandRest = commandLine.split(" ", 2);
         String command = commandRest[0];
+        Command myCommand = CommandFactory.from(commandLine);
         switch (command) {
             case "show":
                 show();
