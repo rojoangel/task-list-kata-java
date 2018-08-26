@@ -1,11 +1,11 @@
 package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.TaskList;
 import com.codurance.training.tasks.TaskListApplication;
 
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class AddTask implements Instruction {
@@ -19,8 +19,8 @@ public class AddTask implements Instruction {
     }
 
     @Override
-    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
-        List<Task> projectTasks = tasks.get(projectId);
+    public void execute(TaskList tasks, PrintWriter out) {
+        List<Task> projectTasks = tasks.getTasks().get(projectId);
         if (projectTasks == null) {
             out.printf("Could not find a project with the name \"%s\".", projectId);
             out.println();

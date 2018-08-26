@@ -1,10 +1,8 @@
 package com.codurance.training.instruction;
 
-import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
 
 public class Help implements Instruction {
 
@@ -20,7 +18,7 @@ public class Help implements Instruction {
     }
 
     @Override
-    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
+    public void execute(TaskList tasks, PrintWriter out) {
         out.println("Commands:");
         out.println("  show");
         out.println("  add project <project name>");

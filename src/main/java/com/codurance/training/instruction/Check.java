@@ -1,6 +1,7 @@
 package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -15,10 +16,10 @@ public class Check implements Instruction {
     }
 
     @Override
-    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
+    public void execute(TaskList tasks, PrintWriter out) {
         boolean done = true;
         int id = Integer.parseInt(taskId);
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+        for (Map.Entry<String, List<Task>> project : tasks.getTasks().entrySet()) {
             for (Task task : project.getValue()) {
                 if (task.getId() == id) {
                     task.setDone(done);

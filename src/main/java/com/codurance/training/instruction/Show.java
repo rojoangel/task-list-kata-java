@@ -1,6 +1,7 @@
 package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -9,8 +10,8 @@ import java.util.Map;
 public class Show implements Instruction {
 
     @Override
-    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+    public void execute(TaskList tasks, PrintWriter out) {
+        for (Map.Entry<String, List<Task>> project : tasks.getTasks().entrySet()) {
             out.println(project.getKey());
             for (Task task : project.getValue()) {
                 out.printf("    [%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());

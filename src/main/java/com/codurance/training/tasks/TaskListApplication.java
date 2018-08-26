@@ -7,9 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 import static com.codurance.training.InstructionFactory.from;
 
@@ -53,6 +50,6 @@ public final class TaskListApplication implements Runnable {
     private void execute(String input) {
         CommandLine commandLine = new CommandLine(input);
         Instruction instruction = from(commandLine);
-        instruction.execute(taskList.getTasks(), out);
+        instruction.execute(taskList, out);
     }
 }

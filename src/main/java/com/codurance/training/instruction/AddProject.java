@@ -1,11 +1,10 @@
 package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class AddProject implements Instruction {
@@ -16,8 +15,8 @@ public class AddProject implements Instruction {
     }
 
     @Override
-    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
-        tasks.put(projectId, new ArrayList<Task>());
+    public void execute(TaskList tasks, PrintWriter out) {
+        tasks.getTasks().put(projectId, new ArrayList<Task>());
     }
 
     @Override

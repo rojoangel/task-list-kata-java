@@ -1,10 +1,8 @@
 package com.codurance.training.instruction;
 
-import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class NotFound implements Instruction {
@@ -16,7 +14,7 @@ public class NotFound implements Instruction {
     }
 
     @Override
-    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
+    public void execute(TaskList tasks, PrintWriter out) {
         out.printf("I don't know what the instruction \"%s\" is.", command);
         out.println();
     }
