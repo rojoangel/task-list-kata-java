@@ -10,20 +10,12 @@ public class TaskList {
 
     private long lastId = 0;
 
-    private Map<String, List<Task>> tasks;
     private List<Project> projects;
     private Map<Long, Task> tasksById;
 
     public TaskList() {
         projects = new ArrayList<>();
         tasksById = new HashMap<>();
-
-        // parallel change to be deleted
-        tasks = new LinkedHashMap<>();
-    }
-
-    public Map<String, List<Task>> getTasks() {
-        return tasks;
     }
 
     public List<Project> getProjects() {
@@ -32,9 +24,6 @@ public class TaskList {
 
     public void addProject(String name) {
         projects.add(new Project(name));
-
-        // parallel change to be removed
-        tasks.put(name, new ArrayList<>());
     }
 
     public void addTask(String projectName, String taskDescription) throws ProjectNotFoundException{
@@ -47,15 +36,6 @@ public class TaskList {
         Task task = new Task(nextId, taskDescription, false);
         project.addTask(task);
         tasksById.put(task.getId(), task);
-
-        // parallel change to be removed
-        List<Task> projectTasks = getTasks().get(projectName);
-
-        if (projectTasks == null) {
-            throw new ProjectNotFoundException(projectName);
-        }
-        projectTasks.add(new Task(nextId, taskDescription, false));
-
     }
 
     private long nextId() {
@@ -76,18 +56,6 @@ public class TaskList {
             throw new TaskNotFoundException(taskId);
         }
         task.done();
-
-        // Parallel change to be removed
-        int id = Integer.parseInt(taskId);
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            for (Task myTask : project.getValue()) {
-                if (myTask.getId() == id) {
-                    myTask.done();
-                    return;
-                }
-            }
-        }
-        throw new TaskNotFoundException(taskId);
     }
 
     private Task findTaskById(Long id) {
@@ -100,17 +68,5 @@ public class TaskList {
             throw new TaskNotFoundException(taskId);
         }
         task.pending();
-
-        // Parallel change to be removed
-        int id = Integer.parseInt(taskId);
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            for (Task myTask : project.getValue()) {
-                if (myTask.getId() == id) {
-                    myTask.pending();
-                    return;
-                }
-            }
-        }
-        throw new TaskNotFoundException(taskId);
     }
 }
