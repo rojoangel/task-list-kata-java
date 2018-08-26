@@ -1,5 +1,7 @@
 package com.codurance.training;
 
+import java.util.Arrays;
+
 public class CommandLineInstruction {
     private String command;
     private String[] arguments = new String[]{};
@@ -22,5 +24,10 @@ public class CommandLineInstruction {
 
     public String getArgument(int index) {
         return arguments[index];
+    }
+
+    public String getMultiWordArgument(int index) {
+        return String.join(" ",
+                Arrays.copyOfRange(arguments, 2, arguments.length));
     }
 }

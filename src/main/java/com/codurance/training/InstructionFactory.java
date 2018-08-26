@@ -6,8 +6,6 @@ import com.codurance.training.query.Query;
 import com.codurance.training.query.Show;
 import com.codurance.training.query.Today;
 
-import java.util.Arrays;
-
 public class InstructionFactory {
 
     public static Command commandFrom(CommandLineInstruction instruction) {
@@ -31,8 +29,7 @@ public class InstructionFactory {
                     case "task":
                         return new AddTask(
                                 instruction.getArgument(1),
-                                String.join(" ",
-                                        Arrays.copyOfRange(instruction.getArguments(), 2, instruction.getArguments().length)));
+                                instruction.getMultiWordArgument(2));
                         default:
                             return null;
                 }
