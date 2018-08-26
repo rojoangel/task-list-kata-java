@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static com.codurance.training.InstructionFactory.from;
 
-public final class TaskList implements Runnable {
+public final class TaskListApplication implements Runnable {
     private static final String QUIT = "quit";
 
     private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
@@ -25,10 +25,10 @@ public final class TaskList implements Runnable {
     public static void main(String[] args) throws Exception {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter out = new PrintWriter(System.out);
-        new TaskList(in, out).run();
+        new TaskListApplication(in, out).run();
     }
 
-    public TaskList(BufferedReader reader, PrintWriter writer) {
+    public TaskListApplication(BufferedReader reader, PrintWriter writer) {
         this.in = reader;
         this.out = writer;
     }

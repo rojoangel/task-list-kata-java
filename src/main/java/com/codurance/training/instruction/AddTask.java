@@ -1,7 +1,7 @@
 package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
-import com.codurance.training.tasks.TaskList;
+import com.codurance.training.tasks.TaskListApplication;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -31,7 +31,7 @@ public class AddTask implements Instruction {
     }
 
     private long nextId() {
-        return ++TaskList.LAST_ID;
+        return ++TaskListApplication.LAST_ID;
     }
 
     @Override

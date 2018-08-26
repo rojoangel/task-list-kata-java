@@ -14,7 +14,7 @@ import static java.lang.System.lineSeparator;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public final class ApplicationTest {
+public final class TaskListApplicationTest {
     public static final String PROMPT = "> ";
     private final PipedOutputStream inStream = new PipedOutputStream();
     private final PrintWriter inWriter = new PrintWriter(inStream, true);
@@ -24,11 +24,11 @@ public final class ApplicationTest {
 
     private Thread applicationThread;
 
-    public ApplicationTest() throws IOException {
+    public TaskListApplicationTest() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(new PipedInputStream(inStream)));
         PrintWriter out = new PrintWriter(new PipedOutputStream(outStream), true);
-        TaskList taskList = new TaskList(in, out);
-        applicationThread = new Thread(taskList);
+        TaskListApplication taskListApplication = new TaskListApplication(in, out);
+        applicationThread = new Thread(taskListApplication);
     }
 
     @Before public void
