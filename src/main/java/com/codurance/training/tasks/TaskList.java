@@ -1,7 +1,6 @@
 package com.codurance.training.tasks;
 
 import com.codurance.training.CommandLineInstruction;
-import com.codurance.training.InstructionFactory;
 import com.codurance.training.instruction.Instruction;
 
 import java.io.BufferedReader;
@@ -11,6 +10,8 @@ import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.codurance.training.InstructionFactory.from;
 
 public final class TaskList implements Runnable {
     private static final String QUIT = "quit";
@@ -51,7 +52,7 @@ public final class TaskList implements Runnable {
 
     private void execute(String commandLine) {
         CommandLineInstruction commandLineInstruction = new CommandLineInstruction(commandLine);
-        Instruction instruction = InstructionFactory.from(commandLineInstruction);
+        Instruction instruction = from(commandLineInstruction);
         instruction.execute(tasks, out);
     }
 }
