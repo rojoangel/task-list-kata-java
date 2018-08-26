@@ -24,4 +24,9 @@ public class Today implements Instruction {
     public int hashCode() {
         return super.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Today{}";
+    }
 }

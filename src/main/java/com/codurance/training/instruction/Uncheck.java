@@ -43,4 +43,11 @@ public class Uncheck implements Instruction {
     public int hashCode() {
         return Objects.hash(taskId);
     }
+
+    @Override
+    public String toString() {
+        return "Uncheck{" +
+                "taskId='" + taskId + '\'' +
+                '}';
+    }
 }

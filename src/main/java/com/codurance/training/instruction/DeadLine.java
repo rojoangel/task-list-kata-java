@@ -35,4 +35,12 @@ public class DeadLine implements Instruction {
     public int hashCode() {
         return Objects.hash(taskId, deadLine);
     }
+
+    @Override
+    public String toString() {
+        return "DeadLine{" +
+                "taskId='" + taskId + '\'' +
+                ", deadLine='" + deadLine + '\'' +
+                '}';
+    }
 }

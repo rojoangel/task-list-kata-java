@@ -30,4 +30,9 @@ public class Help implements Instruction {
         out.println("  uncheck <task ID>");
         out.println();
     }
+
+    @Override
+    public String toString() {
+        return "Help{}";
+    }
 }

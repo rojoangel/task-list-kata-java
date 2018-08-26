@@ -33,4 +33,11 @@ public class NotFound implements Instruction {
     public int hashCode() {
         return Objects.hash(command);
     }
+
+    @Override
+    public String toString() {
+        return "NotFound{" +
+                "command='" + command + '\'' +
+                '}';
+    }
 }

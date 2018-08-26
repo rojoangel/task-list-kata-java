@@ -32,4 +32,11 @@ public class AddProject implements Instruction {
     public int hashCode() {
         return Objects.hash(projectId);
     }
+
+    @Override
+    public String toString() {
+        return "AddProject{" +
+                "projectId='" + projectId + '\'' +
+                '}';
+    }
 }

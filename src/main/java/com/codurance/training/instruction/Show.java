@@ -30,4 +30,9 @@ public class Show implements Instruction {
     public int hashCode() {
         return super.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Show{}";
+    }
 }
