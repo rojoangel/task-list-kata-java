@@ -1,22 +1,20 @@
 package com.codurance.training.instruction;
 
-import com.codurance.training.tasks.Task;
 import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class AddProject implements Instruction {
-    private String projectId;
+    private String projectName;
 
-    public AddProject(String projectId) {
-        this.projectId = projectId;
+    public AddProject(String projectName) {
+        this.projectName = projectName;
     }
 
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
-        tasks.addProject(projectId);
+        tasks.addProject(projectName);
     }
 
     @Override
@@ -24,18 +22,18 @@ public class AddProject implements Instruction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddProject that = (AddProject) o;
-        return Objects.equals(projectId, that.projectId);
+        return Objects.equals(projectName, that.projectName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectId);
+        return Objects.hash(projectName);
     }
 
     @Override
     public String toString() {
         return "AddProject{" +
-                "projectId='" + projectId + '\'' +
+                "projectName='" + projectName + '\'' +
                 '}';
     }
 }
