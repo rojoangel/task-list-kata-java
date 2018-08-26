@@ -1,14 +1,13 @@
 package com.codurance.training;
 
-import com.codurance.training.command.*;
-import com.codurance.training.query.Help;
-import com.codurance.training.query.Query;
-import com.codurance.training.query.Show;
-import com.codurance.training.query.Today;
+import com.codurance.training.instruction.*;
+import com.codurance.training.instruction.Help;
+import com.codurance.training.instruction.Show;
+import com.codurance.training.instruction.Today;
 
 public class InstructionFactory {
 
-    public static Command commandFrom(CommandLineInstruction instruction) {
+    public static Instruction from(CommandLineInstruction instruction) {
 
         switch (instruction.getCommand()) {
             case "deadline":
@@ -33,14 +32,6 @@ public class InstructionFactory {
                         default:
                             return null;
                 }
-            default:
-                return null;
-        }
-    }
-
-    public static Query queryFrom(CommandLineInstruction instruction) {
-
-        switch (instruction.getCommand()) {
             case "today":
                 return new Today();
             case "show":

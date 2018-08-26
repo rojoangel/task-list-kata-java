@@ -1,4 +1,4 @@
-package com.codurance.training.command;
+package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
 import com.codurance.training.tasks.TaskList;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class AddTask implements Command {
+public class AddTask implements Instruction {
 
     private final String projectId;
     private final String taskDescription;

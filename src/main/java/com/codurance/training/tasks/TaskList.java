@@ -2,8 +2,7 @@ package com.codurance.training.tasks;
 
 import com.codurance.training.CommandLineInstruction;
 import com.codurance.training.InstructionFactory;
-import com.codurance.training.command.Command;
-import com.codurance.training.query.Query;
+import com.codurance.training.instruction.Instruction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,31 +55,31 @@ public final class TaskList implements Runnable {
         String command = commandRest[0];
         switch (instruction.getCommand()) {
             case "show":
-                Query show = InstructionFactory.queryFrom(instruction);
+                Instruction show = InstructionFactory.from(instruction);
                 show.execute(tasks, out);
                 break;
             case "add":
-                Command add = InstructionFactory.commandFrom(instruction);
+                Instruction add = InstructionFactory.from(instruction);
                 add.execute(tasks, out);
                 break;
             case "check":
-                Command check = InstructionFactory.commandFrom(instruction);
+                Instruction check = InstructionFactory.from(instruction);
                 check.execute(tasks, out);
                 break;
             case "uncheck":
-                Command uncheck = InstructionFactory.commandFrom(instruction);
+                Instruction uncheck = InstructionFactory.from(instruction);
                 uncheck.execute(tasks, out);
                 break;
             case "help":
-                Query help = InstructionFactory.queryFrom(instruction);
+                Instruction help = InstructionFactory.from(instruction);
                 help.execute(tasks, out);
                 break;
             case "deadline":
-                Command deadline = InstructionFactory.commandFrom(instruction);
+                Instruction deadline = InstructionFactory.from(instruction);
                 deadline.execute(tasks, out);
                 break;
             case "today":
-                Query today = InstructionFactory.queryFrom(instruction);
+                Instruction today = InstructionFactory.from(instruction);
                 today.execute(tasks, out);
                 break;
             default:
@@ -90,7 +89,7 @@ public final class TaskList implements Runnable {
     }
 
     private void error(String command) {
-        out.printf("I don't know what the command \"%s\" is.", command);
+        out.printf("I don't know what the instruction \"%s\" is.", command);
         out.println();
     }
 }

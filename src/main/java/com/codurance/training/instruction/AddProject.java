@@ -1,4 +1,4 @@
-package com.codurance.training.command;
+package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
 
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class AddProject implements Command {
+public class AddProject implements Instruction {
     private String projectId;
 
     public AddProject(String projectId) {

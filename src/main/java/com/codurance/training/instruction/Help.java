@@ -1,12 +1,13 @@
-package com.codurance.training.query;
+package com.codurance.training.instruction;
 
+import com.codurance.training.instruction.Instruction;
 import com.codurance.training.tasks.Task;
 
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-public class Help implements Query {
+public class Help implements Instruction {
 
     @Override
     public boolean equals(Object o) {

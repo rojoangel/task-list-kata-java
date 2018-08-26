@@ -1,4 +1,4 @@
-package com.codurance.training.command;
+package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class DeadLine implements Command {
+public class DeadLine implements Instruction {
 
     private final String taskId;
     private final String deadLine;

@@ -1,12 +1,13 @@
-package com.codurance.training.query;
+package com.codurance.training.instruction;
 
+import com.codurance.training.instruction.Instruction;
 import com.codurance.training.tasks.Task;
 
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-public class Today implements Query {
+public class Today implements Instruction {
 
     @Override
     public void execute(Map<String, List<Task>> tasks, PrintWriter out) {

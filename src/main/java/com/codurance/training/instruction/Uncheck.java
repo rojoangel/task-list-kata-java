@@ -1,4 +1,4 @@
-package com.codurance.training.command;
+package com.codurance.training.instruction;
 
 import com.codurance.training.tasks.Task;
 
@@ -7,16 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class Check implements Command {
+public class Uncheck implements Instruction {
     private String taskId;
 
-    public Check(String taskId) {
+    public Uncheck(String taskId) {
         this.taskId = taskId;
     }
 
     @Override
     public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
-        boolean done = true;
+        boolean done = false;
         int id = Integer.parseInt(taskId);
         for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
             for (Task task : project.getValue()) {
@@ -30,12 +30,13 @@ public class Check implements Command {
         out.println();
 
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Check check = (Check) o;
-        return Objects.equals(taskId, check.taskId);
+        Uncheck uncheck = (Uncheck) o;
+        return Objects.equals(taskId, uncheck.taskId);
     }
 
     @Override
