@@ -56,4 +56,8 @@ public final class Task {
     public void done() {
         this.done = true;
     }
+
+    public void pending() {
+        this.done = false;
+    }
 }

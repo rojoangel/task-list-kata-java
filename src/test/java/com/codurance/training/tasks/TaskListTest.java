@@ -64,4 +64,25 @@ public class TaskListTest {
 
         assertEquals(projects, taskList.getProjects());
     }
+
+    @Test(expected = TaskNotFoundException.class)
+    public void should_fail_marking_as_pending_when_task_does_not_exist() throws Exception {
+        TaskList taskList = new TaskList();
+        taskList.markAsPending("1");
+    }
+
+    @Test
+    public void should_mark_as_pending_a_task_when_found() throws Exception {
+        Project project = new Project("secrets");
+        project.addTask(new Task(1, "one task", false));
+        List<Project> projects = Arrays.asList(project);
+
+        TaskList taskList = new TaskList();
+        taskList.addProject("secrets");
+        taskList.addTask("secrets", "one task");
+        taskList.markAsDone("1");
+        taskList.markAsPending("1");
+
+        assertEquals(projects, taskList.getProjects());
+    }
 }

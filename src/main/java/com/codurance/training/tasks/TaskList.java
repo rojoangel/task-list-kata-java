@@ -93,4 +93,24 @@ public class TaskList {
     private Task findTaskById(Long id) {
         return tasksById.get(id);
     }
+
+    public void markAsPending(String taskId) throws TaskNotFoundException {
+        Task task = findTaskById(Long.parseLong(taskId));
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
+        task.pending();
+
+        // Parallel change to be removed
+        int id = Integer.parseInt(taskId);
+        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+            for (Task myTask : project.getValue()) {
+                if (myTask.getId() == id) {
+                    myTask.pending();
+                    return;
+                }
+            }
+        }
+        throw new TaskNotFoundException(taskId);
+    }
 }
