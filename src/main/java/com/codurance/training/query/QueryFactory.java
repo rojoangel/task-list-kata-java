@@ -1,7 +1,7 @@
 package com.codurance.training.query;
 
 public class QueryFactory {
-    public static Query from(String commandLine) {
+    public static Query queryFrom(String commandLine) {
         String[] commandRest = commandLine.split(" ");
         String command = commandRest[0];
 

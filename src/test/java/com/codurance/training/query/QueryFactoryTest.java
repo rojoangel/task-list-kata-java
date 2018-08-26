@@ -8,7 +8,7 @@ public class QueryFactoryTest {
 
     @Test
     public void should_create_a_today_query() {
-        Query command = QueryFactory.from("today");
+        Query command = QueryFactory.queryFrom("today");
         assertEquals(new Today(), command);
     }
 }

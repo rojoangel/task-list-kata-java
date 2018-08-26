@@ -2,7 +2,7 @@ package com.codurance.training.command;
 
 public class CommandFactory {
 
-    public static Command from(String commandLine) {
+    public static Command commandFrom(String commandLine) {
 
         String[] commandRest = commandLine.split(" ");
         String command = commandRest[0];

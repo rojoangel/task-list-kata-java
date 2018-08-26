@@ -71,11 +71,11 @@ public final class TaskList implements Runnable {
                 help();
                 break;
             case "deadline":
-                Command deadline = CommandFactory.from(commandLine);
+                Command deadline = CommandFactory.commandFrom(commandLine);
                 deadline.execute();
                 break;
             case "today":
-                Query today = QueryFactory.from(commandLine);
+                Query today = QueryFactory.queryFrom(commandLine);
                 out.print(today.execute());
                 break;
             default:
