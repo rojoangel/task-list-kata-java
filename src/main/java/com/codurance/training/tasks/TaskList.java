@@ -65,6 +65,12 @@ public final class TaskList implements Runnable {
             case "help":
                 help();
                 break;
+            case "deadline":
+                deadline();
+                break;
+            case "today":
+                today();
+                break;
             default:
                 error(command);
                 break;
@@ -125,6 +131,14 @@ public final class TaskList implements Runnable {
             }
         }
         out.printf("Could not find a task with an ID of %d.", id);
+        out.println();
+    }
+
+    private void deadline() {
+
+    }
+
+    private void today() {
         out.println();
     }
 

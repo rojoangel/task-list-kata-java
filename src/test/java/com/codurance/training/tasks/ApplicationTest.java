@@ -99,6 +99,33 @@ public final class ApplicationTest {
         execute("quit");
     }
 
+    @Test(timeout = 1000) public void
+    shows_no_tasks_if_none_is_due_today() throws IOException {
+
+        execute("add project secrets");
+        execute("add task secrets Eat more donuts.");
+        execute("add task secrets Destroy all humans.");
+
+        execute("add project training");
+        execute("add task training Four Elements of Simple Design");
+        execute("add task training SOLID");
+        execute("add task training Coupling and Cohesion");
+        execute("add task training Primitive Obsession");
+        execute("add task training Outside-In TDD");
+        execute("add task training Interaction-Driven Design");
+
+        execute("deadline 2 20180101");
+        execute("deadline 4 20180101");
+
+        execute("today");
+
+        readLines(
+            ""
+        );
+
+        execute("quit");
+    }
+
     private void execute(String command) throws IOException {
         read(PROMPT);
         write(command);
