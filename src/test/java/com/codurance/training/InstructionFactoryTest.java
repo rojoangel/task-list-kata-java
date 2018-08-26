@@ -1,5 +1,6 @@
 package com.codurance.training;
 
+import com.codurance.training.command.Check;
 import com.codurance.training.command.Command;
 import com.codurance.training.command.DeadLine;
 import com.codurance.training.query.Query;
@@ -32,4 +33,10 @@ public class InstructionFactoryTest {
         assertEquals(new Show(), show);
     }
 
+    @Test
+    public void should_create_a_check_command() {
+        CommandLineInstruction instruction = new CommandLineInstruction("check 1");
+        Command check = InstructionFactory.commandFrom(instruction);
+        assertEquals(new Check("1"), check);
+    }
 }

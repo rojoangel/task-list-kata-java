@@ -1,5 +1,6 @@
 package com.codurance.training;
 
+import com.codurance.training.command.Check;
 import com.codurance.training.command.Command;
 import com.codurance.training.command.DeadLine;
 import com.codurance.training.query.Query;
@@ -12,9 +13,12 @@ public class InstructionFactory {
 
         switch (instruction.getCommand()) {
             case "deadline":
-                String taskId = instruction.getArgument(0);
-                String deadLine = instruction.getArgument(1);
-                return new DeadLine(taskId, deadLine);
+                return new DeadLine(
+                        instruction.getArgument(0),
+                        instruction.getArgument(1));
+            case "check":
+                return new Check(
+                        instruction.getArgument(0));
             default:
                 return null;
         }

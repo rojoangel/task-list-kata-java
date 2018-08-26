@@ -1,5 +1,10 @@
 package com.codurance.training.command;
 
+import com.codurance.training.tasks.Task;
+
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class DeadLine implements Command {
@@ -13,7 +18,7 @@ public class DeadLine implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(Map<String, List<Task>> tasks, PrintWriter out) {
 
     }
 

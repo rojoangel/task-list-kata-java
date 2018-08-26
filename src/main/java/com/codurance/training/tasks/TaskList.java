@@ -64,7 +64,8 @@ public final class TaskList implements Runnable {
                 add(commandRest[1]);
                 break;
             case "check":
-                check(commandRest[1]);
+                Command check = InstructionFactory.commandFrom(instruction);
+                check.execute(tasks, out);
                 break;
             case "uncheck":
                 uncheck(commandRest[1]);
@@ -74,7 +75,7 @@ public final class TaskList implements Runnable {
                 break;
             case "deadline":
                 Command deadline = InstructionFactory.commandFrom(instruction);
-                deadline.execute();
+                deadline.execute(tasks, out);
                 break;
             case "today":
                 Query today = InstructionFactory.queryFrom(instruction);
@@ -110,11 +111,7 @@ public final class TaskList implements Runnable {
         }
         projectTasks.add(new Task(nextId(), description, false));
     }
-
-    private void check(String idString) {
-        setDone(idString, true);
-    }
-
+    
     private void uncheck(String idString) {
         setDone(idString, false);
     }
