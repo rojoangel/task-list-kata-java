@@ -39,7 +39,7 @@ public class InstructionFactory {
             case "help":
                 return new Help();
             default:
-                return null;
+                return new NotFound(instruction.getCommand());
         }
     }
 }

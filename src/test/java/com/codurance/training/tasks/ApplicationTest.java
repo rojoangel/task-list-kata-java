@@ -126,6 +126,18 @@ public final class ApplicationTest {
         execute("quit");
     }
 
+    @Test(timeout = 1000) public void
+    shows_error_when_message_not_found() throws IOException {
+
+        execute("dummy");
+
+        readLines(
+                "I don't know what the instruction \"dummy\" is."
+        );
+
+        execute("quit");
+    }
+
     private void execute(String command) throws IOException {
         read(PROMPT);
         write(command);

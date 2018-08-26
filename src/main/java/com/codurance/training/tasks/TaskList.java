@@ -81,13 +81,9 @@ public final class TaskList implements Runnable {
                 today.execute(tasks, out);
                 break;
             default:
-                error(instruction.getCommand());
+                Instruction notFound = InstructionFactory.from(instruction);
+                notFound.execute(tasks, out);
                 break;
         }
-    }
-
-    private void error(String command) {
-        out.printf("I don't know what the instruction \"%s\" is.", command);
-        out.println();
     }
 }
