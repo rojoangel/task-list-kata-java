@@ -21,7 +21,7 @@ public class AddTask implements Instruction {
         try {
             tasks.addTask(projectName, taskDescription);
         } catch(ProjectNotFoundException ex) {
-            out.printf("Could not find a project with the name \"%s\".", projectName);
+            out.printf(ex.getMessage());
             out.println();
         }
     }
