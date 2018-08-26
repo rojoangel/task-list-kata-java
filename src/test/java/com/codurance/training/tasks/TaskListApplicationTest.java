@@ -80,6 +80,8 @@ public final class TaskListApplicationTest {
         execute("check 5");
         execute("check 6");
 
+        execute("uncheck 5");
+
         execute("show");
         readLines(
                 "secrets",
@@ -89,7 +91,7 @@ public final class TaskListApplicationTest {
                 "training",
                 "    [x] 3: Four Elements of Simple Design",
                 "    [ ] 4: SOLID",
-                "    [x] 5: Coupling and Cohesion",
+                "    [ ] 5: Coupling and Cohesion",
                 "    [x] 6: Primitive Obsession",
                 "    [ ] 7: Outside-In TDD",
                 "    [ ] 8: Interaction-Driven Design",
