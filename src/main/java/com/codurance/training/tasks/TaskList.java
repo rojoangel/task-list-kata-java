@@ -55,7 +55,7 @@ public final class TaskList implements Runnable {
         CommandLineInstruction instruction = new CommandLineInstruction(commandLine);
         String[] commandRest = commandLine.split(" ", 2);
         String command = commandRest[0];
-        switch (command) {
+        switch (instruction.getCommand()) {
             case "show":
                 show();
                 break;
