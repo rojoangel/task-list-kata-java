@@ -25,10 +25,6 @@ public final class Task {
         return done;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
