@@ -7,6 +7,8 @@ import java.util.*;
 
 public class TaskList {
 
+    private long lastId = 0;
+
     private Map<String, List<Task>> tasks;
     private List<Project> projects;
 
@@ -32,11 +34,12 @@ public class TaskList {
 
     public void addTask(String projectName, String taskDescription) throws ProjectNotFoundException{
 
+        long nextId = nextId();
         Project project = findProjectByName(projectName);
         if (project == null) {
             throw new ProjectNotFoundException(projectName);
         }
-        project.addTask(new Task(1, taskDescription, false));
+        project.addTask(new Task(nextId, taskDescription, false));
 
         // parallel change to be removed
         List<Task> projectTasks = getTasks().get(projectName);
@@ -44,12 +47,12 @@ public class TaskList {
         if (projectTasks == null) {
             throw new ProjectNotFoundException(projectName);
         }
-        projectTasks.add(new Task(nextId(), taskDescription, false));
+        projectTasks.add(new Task(nextId, taskDescription, false));
 
     }
 
     private long nextId() {
-        return ++TaskListApplication.LAST_ID;
+        return ++lastId;
     }
 
     private Project findProjectByName(String projectName) {
