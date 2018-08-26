@@ -1,7 +1,7 @@
 package com.codurance.training.tasks;
 
 import com.codurance.training.CommandLine;
-import com.codurance.training.instruction.Instruction;
+import com.codurance.training.instructions.Instruction;
 
 import java.io.BufferedReader;
 import java.io.IOException;

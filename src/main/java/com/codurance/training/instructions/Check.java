@@ -1,44 +1,45 @@
-package com.codurance.training.instruction;
+package com.codurance.training.instructions;
 
+import com.codurance.training.exceptions.TaskNotFoundException;
 import com.codurance.training.tasks.TaskList;
 
 import java.io.PrintWriter;
 import java.util.Objects;
 
-public class DeadLine implements Instruction {
+public class Check implements Instruction {
+    private String taskId;
 
-    private final String taskId;
-    private final String deadLine;
-
-    public DeadLine(String taskId, String deadLine) {
+    public Check(String taskId) {
         this.taskId = taskId;
-        this.deadLine = deadLine;
     }
 
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
-
+        try {
+            tasks.markAsDone(taskId);
+        } catch (TaskNotFoundException ex) {
+            out.printf(ex.getMessage());
+            out.println();
+        }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DeadLine deadLine1 = (DeadLine) o;
-        return Objects.equals(taskId, deadLine1.taskId) &&
-                Objects.equals(deadLine, deadLine1.deadLine);
+        Check check = (Check) o;
+        return Objects.equals(taskId, check.taskId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, deadLine);
+        return Objects.hash(taskId);
     }
 
     @Override
     public String toString() {
-        return "DeadLine{" +
+        return "Check{" +
                 "taskId='" + taskId + '\'' +
-                ", deadLine='" + deadLine + '\'' +
                 '}';
     }
 }

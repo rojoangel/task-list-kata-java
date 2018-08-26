@@ -1,4 +1,4 @@
-package com.codurance.training.instruction;
+package com.codurance.training.instructions;
 
 import com.codurance.training.tasks.TaskList;
 
@@ -15,7 +15,7 @@ public class NotFound implements Instruction {
 
     @Override
     public void execute(TaskList tasks, PrintWriter out) {
-        out.printf("I don't know what the instruction \"%s\" is.", command);
+        out.printf("I don't know what the instructions \"%s\" is.", command);
         out.println();
     }
 

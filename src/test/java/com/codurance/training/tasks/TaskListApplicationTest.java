@@ -134,7 +134,7 @@ public final class TaskListApplicationTest {
         execute("dummy");
 
         readLines(
-                "I don't know what the instruction \"dummy\" is."
+                "I don't know what the instructions \"dummy\" is."
         );
 
         execute("quit");

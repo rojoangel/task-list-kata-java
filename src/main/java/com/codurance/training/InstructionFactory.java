@@ -1,6 +1,6 @@
 package com.codurance.training;
 
-import com.codurance.training.instruction.*;
+import com.codurance.training.instructions.*;
 
 public class InstructionFactory {
 
