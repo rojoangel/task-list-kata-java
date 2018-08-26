@@ -18,7 +18,7 @@ public class Check implements Instruction {
         try {
             tasks.markAsdone(taskId);
         } catch (TaskNotFoundException ex) {
-            out.printf("Could not find a task with an ID of %s.", taskId);
+            out.printf(ex.getMessage());
             out.println();
         }
     }
