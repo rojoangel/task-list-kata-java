@@ -11,11 +11,9 @@ public class TaskList {
     private long lastId = 0;
 
     private List<Project> projects;
-    private Map<Long, Task> tasksById;
 
     public TaskList() {
         projects = new ArrayList<>();
-        tasksById = new HashMap<>();
     }
 
     public List<Project> getProjects() {
@@ -35,7 +33,6 @@ public class TaskList {
         }
         Task task = new Task(nextId, taskDescription);
         project.addTask(task);
-        tasksById.put(task.getId(), task);
     }
 
     private long nextId() {
@@ -59,7 +56,14 @@ public class TaskList {
     }
 
     private Task findTaskById(Long id) {
-        return tasksById.get(id);
+        for (Project project : projects) {
+            for (Task task : project.getTasks()) {
+                if (id.equals(task.getId())) {
+                    return task;
+                }
+            }
+        }
+        return null;
     }
 
     public void markAsPending(String taskId) throws TaskNotFoundException {
@@ -68,5 +72,25 @@ public class TaskList {
             throw new TaskNotFoundException(taskId);
         }
         task.pending();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TaskList taskList = (TaskList) o;
+        return Objects.equals(projects, taskList.projects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(projects);
+    }
+
+    @Override
+    public String toString() {
+        return "TaskList{" +
+                ", projects=" + projects +
+                '}';
     }
 }
