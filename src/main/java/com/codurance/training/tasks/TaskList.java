@@ -74,6 +74,14 @@ public class TaskList {
         task.pending();
     }
 
+    public void addDeadLine(String taskId, Date deadLine) throws TaskNotFoundException {
+        Task task = findTaskById(Long.parseLong(taskId));
+        if (task == null) {
+            throw new TaskNotFoundException(taskId);
+        }
+        task.setDeadLine(deadLine);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

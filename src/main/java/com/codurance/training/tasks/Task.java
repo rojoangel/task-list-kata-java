@@ -1,11 +1,13 @@
 package com.codurance.training.tasks;
 
+import java.util.Date;
 import java.util.Objects;
 
 public final class Task {
     private final long id;
     private final String description;
     private boolean done = false;
+    private Date deadLine;
 
     public Task(long id, String description) {
         this.id = id;
@@ -24,6 +26,18 @@ public final class Task {
         return done;
     }
 
+    public void done() {
+        this.done = true;
+    }
+
+    public void pending() {
+        this.done = false;
+    }
+
+    public void setDeadLine(Date deadLine) {
+        this.deadLine = deadLine;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,12 +45,13 @@ public final class Task {
         Task task = (Task) o;
         return id == task.id &&
                 done == task.done &&
-                Objects.equals(description, task.description);
+                Objects.equals(description, task.description) &&
+                Objects.equals(deadLine, task.deadLine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, done);
+        return Objects.hash(id, description, done, deadLine);
     }
 
     @Override
@@ -45,14 +60,7 @@ public final class Task {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", done=" + done +
+                ", deadLine=" + deadLine +
                 '}';
-    }
-
-    public void done() {
-        this.done = true;
-    }
-
-    public void pending() {
-        this.done = false;
     }
 }
